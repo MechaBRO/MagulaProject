@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1wimr3euy1cy"]
+
+[ext_resource type="AudioStream" uid="uid://b2852v2ts2m" path="res://Music/Kevin MacLeod - Virtutes Instrumenti.mp3" id="1_0oxp0"]
+
+[node name="Audio" type="AudioStreamPlayer"]
+stream = ExtResource("1_0oxp0")
+volume_db = -10.0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b2852v2ts2m"
+path="res://.godot/imported/Kevin MacLeod - Virtutes Instrumenti.mp3-8ba9f36bf77595eb34f0c9b7d8702758.mp3str"
+
+[deps]
+
+source_file="res://Music/Kevin MacLeod - Virtutes Instrumenti.mp3"
+dest_files=["res://.godot/imported/Kevin MacLeod - Virtutes Instrumenti.mp3-8ba9f36bf77595eb34f0c9b7d8702758.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

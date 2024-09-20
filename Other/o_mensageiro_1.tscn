@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5nl7ki63yat6"]
+
+[ext_resource type="PackedScene" uid="uid://dmc8ruifpsiba" path="res://Models/O_Mensageiro_1.glb" id="1_kfy3f"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yupqm"]
+
+[node name="O_Mensageiro_1" instance=ExtResource("1_kfy3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99829, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5"]
+transform = Transform3D(4, 0, 0, 0, 5, 0, 0, 0, 5, 3.11231, 1.58612, 0.429182)
+shape = SubResource("CapsuleShape3D_yupqm")

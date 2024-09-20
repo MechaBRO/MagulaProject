@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp7wsu45mia5a"]
+
+[ext_resource type="PackedScene" uid="uid://b7rri51p52wll" path="res://Models/Musket_Javelin.glb" id="1_au46u"]
+
+[node name="Musket_Javelin" instance=ExtResource("1_au46u")]
+
+[node name="Cube_001" parent="." index="0"]
+transform = Transform3D(-0.486318, 0.15054, -7.68697e-08, 0.15054, 0.486318, -9.44629e-14, 7.34319e-08, -2.2731e-08, -0.509085, -0.116917, 5.34886, -0.0424824)
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="1"]
+transform = Transform3D(0.00270527, 0, -0.999996, 0, 1, 0, 0.999996, 0, 0.00270527, -6.78075, 5.25022, -0.383918)
+target_position = Vector3(0, 0, 10)

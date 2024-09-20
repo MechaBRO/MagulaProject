@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://5aaly4872vgo"]
+
+[ext_resource type="Script" path="res://Other/bullet.gd" id="1_igxo3"]
+[ext_resource type="Texture2D" uid="uid://tmwqd4a200df" path="res://Texture/Weapons01Bullet.png" id="2_g63o0"]
+[ext_resource type="Texture2D" uid="uid://dm7pkdcsgo80u" path="res://Texture/smoke1.png" id="3_4o0un"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8fgy8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igqiq"]
+albedo_texture = ExtResource("2_g63o0")
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0.054902, 0, 0, 1)
+emission_energy_multiplier = 0.92
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uwah0"]
+angle_min = -230.4
+angle_max = 19.2
+spread = 90.085
+angular_velocity_min = 211.2
+angular_velocity_max = 230.4
+radial_velocity_min = 1.5
+radial_velocity_max = 1.5
+gravity = Vector3(0, 1, 0)
+linear_accel_min = -20.0
+linear_accel_max = -20.0
+scale_min = 5.0
+scale_max = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ghuas"]
+transparency = 1
+albedo_color = Color(0.121569, 0.121569, 0.121569, 1)
+albedo_texture = ExtResource("3_4o0un")
+
+[sub_resource type="QuadMesh" id="QuadMesh_upgyw"]
+material = SubResource("StandardMaterial3D_ghuas")
+
+[node name="BulletMusket" type="Node3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+top_level = true
+script = ExtResource("1_igxo3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+layers = 3
+mesh = SubResource("SphereMesh_8fgy8")
+surface_material_override/0 = SubResource("StandardMaterial3D_igqiq")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 0.5)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 9.21477)
+emitting = false
+amount = 6
+amount_ratio = 0.5
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.25
+randomness = 0.25
+visibility_aabb = AABB(-4, -4.01221, -4, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_uwah0")
+draw_pass_1 = SubResource("QuadMesh_upgyw")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

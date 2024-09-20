@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhpjds24qr2m7"]
+
+[ext_resource type="Script" path="res://Other/Menu.gd" id="1_ecnwn"]
+[ext_resource type="Texture2D" uid="uid://djut1idxkgu8h" path="res://UI/Man Grounds.png" id="2_nsnlu"]
+[ext_resource type="AudioStream" uid="uid://y5m04nr5ivgh" path="res://Sound/whooshmenu.mp3" id="4_lpvnx"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tdwoh"]
+load_path = "res://.godot/imported/UI Texture_1.png-276ee07a2049a98bdbcf0dd70d59fceb.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hfe5c"]
+texture = SubResource("CompressedTexture2D_tdwoh")
+expand_margin_left = 700.0
+expand_margin_top = 100.0
+expand_margin_right = 300.0
+expand_margin_bottom = 50.0
+region_rect = Rect2(21.689, 64.389, 2602.13, 405)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1tjbq"]
+texture = SubResource("CompressedTexture2D_tdwoh")
+texture_margin_bottom = 100.0
+expand_margin_left = 50.0
+expand_margin_top = 100.0
+expand_margin_right = 50.0
+expand_margin_bottom = 100.0
+region_rect = Rect2(2538, 143, 2456, 1844)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 96.0
+offset_top = 49.0
+offset_right = 46.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.09503, 1.09503)
+pivot_offset = Vector2(1011, 520)
+script = ExtResource("1_ecnwn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_left = 513.0
+offset_top = 349.0
+offset_right = 737.0
+offset_bottom = 533.0
+pivot_offset = Vector2(111, -133)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 0.0687811
+offset_top = 0.379522
+offset_right = 5000.07
+offset_bottom = 4000.38
+scale = Vector2(0.105508, 0.0892839)
+texture = ExtResource("2_nsnlu")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+offset_left = 468.549
+offset_top = 15.9042
+offset_right = 676.549
+offset_bottom = 199.904
+scale = Vector2(0.508028, 0.501921)
+
+[node name="Label" type="Label" parent="MarginContainer2"]
+visibility_layer = 2
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_hfe5c")
+
+[node name="skull" type="Label" parent="."]
+layout_mode = 2
+offset_left = 135.225
+offset_top = 113.618
+offset_right = 687.225
+offset_bottom = 590.618
+scale = Vector2(0.496144, 0.496144)
+theme_override_styles/normal = SubResource("StyleBoxTexture_1tjbq")
+
+[node name="Start Game" type="Button" parent="skull"]
+layout_mode = 0
+offset_left = 129.892
+offset_top = -45.5666
+offset_right = 439.892
+offset_bottom = 58.4334
+flat = true
+
+[node name="Options" type="Button" parent="skull"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.769283
+anchor_top = 0.531474
+anchor_right = 0.876751
+anchor_bottom = 0.531474
+offset_left = -269.182
+offset_top = -169.403
+offset_right = -61.1815
+offset_bottom = -46.4027
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.935833, -0.531962)
+pivot_offset = Vector2(103.936, 61.9627)
+flat = true
+alignment = 0
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Exit Game" type="Button" parent="skull"]
+layout_mode = 2
+offset_left = 187.425
+offset_top = 210.134
+offset_right = 395.425
+offset_bottom = 252.134
+scale = Vector2(0.942717, 1.30248)
+theme_override_colors/font_color = Color(0.133333, 0, 0, 1)
+flat = true
+
+[node name="menu_sounds" type="Node" parent="."]
+
+[node name="buttonclick" type="AudioStreamPlayer" parent="menu_sounds"]
+stream = ExtResource("4_lpvnx")
+
+[connection signal="pressed" from="skull/Start Game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="skull/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="skull/Exit Game" to="." method="_on_exit_game_pressed"]

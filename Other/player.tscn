@@ -1,0 +1,345 @@
+[gd_scene load_steps=31 format=3 uid="uid://dcdpunclxfyqu"]
+
+[ext_resource type="Script" path="res://Models/O_Mensageiro_1.gd" id="1_5l758"]
+[ext_resource type="Script" path="res://Other/HUD.gd" id="2_2xdnq"]
+[ext_resource type="PackedScene" uid="uid://n4q750qshmef" path="res://Other/view_model.tscn" id="2_5agj8"]
+[ext_resource type="PackedScene" uid="uid://4w4icpflseuc" path="res://area_3d.tscn" id="2_skggh"]
+[ext_resource type="Shader" path="res://Other/player.gdshader" id="3_4bies"]
+[ext_resource type="FontFile" uid="uid://b7coh7gpk5acq" path="res://UI/karakteristika.ttf" id="3_mnfkl"]
+[ext_resource type="PackedScene" uid="uid://bpcg5q23uqy75" path="res://Models/O_Mensageiro_game.glb" id="3_ojoam"]
+[ext_resource type="AudioStream" uid="uid://vx4opaemj4qy" path="res://Sound/musket1.mp3" id="4_ti7tb"]
+[ext_resource type="PackedScene" uid="uid://bki3rlwax2ash" path="res://Other/trauma_causer.tscn" id="5_rt0cm"]
+[ext_resource type="AudioStream" uid="uid://duto3h6kbh1tc" path="res://Sound/footsteps_run.mp3" id="6_sixad"]
+[ext_resource type="AudioStream" uid="uid://he6lnxgn21or" path="res://Sound/mud_step1.mp3" id="6_va642"]
+[ext_resource type="AudioStream" uid="uid://c6w4sqhkdqq6n" path="res://Sound/grass_step1.mp3" id="8_lqyhb"]
+[ext_resource type="AudioStream" uid="uid://cafgoiv015v0q" path="res://Sound/graveldirt_step1.mp3" id="9_aqqjk"]
+[ext_resource type="Script" path="res://Other/GroundChecker.gd" id="10_xm81s"]
+
+[sub_resource type="World3D" id="World3D_077n0"]
+
+[sub_resource type="Environment" id="Environment_tjexl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s5fe2"]
+radius = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j0i0u"]
+radius = 1.5
+
+[sub_resource type="Animation" id="Animation_38hei"]
+resource_name = "Bobbing"
+length = 0.8
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_footstep_audio"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main_Cam:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.423759, -1.01187), Vector3(0, 1.584, -1.012), Vector3(0, 0.423759, -1.01187)]
+}
+
+[sub_resource type="Animation" id="Animation_tufdx"]
+resource_name = "Crouch_Bob"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main_Cam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -2.64539, -2.5022), Vector3(0, -1.62151, -2.5022), Vector3(0, -2.64539, -2.5022)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_footstep_audio"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2st56"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main_Cam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.423759, -1.01187)]
+}
+
+[sub_resource type="Animation" id="Animation_8rpfp"]
+resource_name = "Run_Bob"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_footstep_audio"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main_Cam:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.423759, -1.01187), Vector3(0, 1.53658, -1.01187), Vector3(0, 0.423759, -1.01187)]
+}
+
+[sub_resource type="Animation" id="Animation_47sw2"]
+resource_name = "Standing_Crouch"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main_Cam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.423759, -1.01187), Vector3(0, -2.64539, -2.5022)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fdpw0"]
+_data = {
+"Bobbing": SubResource("Animation_38hei"),
+"Crouch_Bob": SubResource("Animation_tufdx"),
+"RESET": SubResource("Animation_2st56"),
+"Run_Bob": SubResource("Animation_8rpfp"),
+"Standing_Crouch": SubResource("Animation_47sw2")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ioeq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x7s8k"]
+
+[sub_resource type="Animation" id="Animation_mox6k"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_xp64f"]
+resource_name = "ShootingJavelin"
+length = 0.6
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ry1q1"]
+_data = {
+"RESET": SubResource("Animation_mox6k"),
+"ShootingJavelin": SubResource("Animation_xp64f")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_686c3"]
+shader = ExtResource("3_4bies")
+shader_parameter/x = 100.0
+shader_parameter/y = 100.0
+
+[node name="Player3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5668, 62.0929, -302.555)
+script = ExtResource("1_5l758")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0358715, 3.59733, 0.880371)
+
+[node name="Main_Cam" parent="Head" instance=ExtResource("2_skggh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.423759, -1.01187)
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Main_Cam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0232639, -0.315392, -1.28601)
+target_position = Vector3(0, 0, -200)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Head/Main_Cam"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Head/Main_Cam/SubViewportContainer"]
+own_world_3d = true
+world_3d = SubResource("World3D_077n0")
+transparent_bg = true
+handle_input_locally = false
+positional_shadow_atlas_16_bits = false
+size = Vector2i(576, 324)
+render_target_update_mode = 4
+
+[node name="view_model_cam" parent="Head/Main_Cam/SubViewportContainer/SubViewport" instance=ExtResource("2_5agj8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6784, 66.0428, -305.392)
+environment = SubResource("Environment_tjexl")
+
+[node name="trauma_causer" parent="Head/Main_Cam" instance=ExtResource("5_rt0cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999146)
+trauma_amount = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Main_Cam/trauma_causer"]
+shape = SubResource("SphereShape3D_s5fe2")
+
+[node name="traum_move" parent="Head/Main_Cam" instance=ExtResource("5_rt0cm")]
+trauma_amount = 0.7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Main_Cam/traum_move"]
+shape = SubResource("SphereShape3D_j0i0u")
+
+[node name="CameraAnim" type="AnimationPlayer" parent="Head"]
+libraries = {
+"": SubResource("AnimationLibrary_fdpw0")
+}
+
+[node name="O_Mensageiro_game" parent="Head" instance=ExtResource("3_ojoam")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.325508, -11.9541, -3.00439)
+
+[node name="Standing" type="CollisionShape3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 9, 0, 0, 0, 2.7, -0.0500679, -1.85161, 0.66217)
+shape = SubResource("BoxShape3D_1ioeq")
+
+[node name="Crouch" type="CollisionShape3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 6, 0, 0, 0, 2.7, -0.0499992, -3.3574, 0.661987)
+shape = SubResource("BoxShape3D_x7s8k")
+disabled = true
+
+[node name="Player_Animations" type="AnimationPlayer" parent="."]
+root_node = NodePath("")
+libraries = {
+"": SubResource("AnimationLibrary_ry1q1")
+}
+
+[node name="player_sounds" type="Node3D" parent="."]
+
+[node name="gunshot" type="AudioStreamPlayer3D" parent="player_sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5668, 62.0929, -302.555)
+stream = ExtResource("4_ti7tb")
+volume_db = 35.0
+emission_angle_enabled = true
+
+[node name="mud" type="AudioStreamPlayer3D" parent="player_sounds"]
+stream = ExtResource("6_va642")
+volume_db = 80.0
+max_db = 6.0
+
+[node name="mud_run" type="AudioStreamPlayer3D" parent="player_sounds"]
+stream = ExtResource("6_sixad")
+volume_db = 80.0
+max_db = 6.0
+
+[node name="grass" type="AudioStreamPlayer3D" parent="player_sounds"]
+stream = ExtResource("8_lqyhb")
+volume_db = 20.0
+
+[node name="graveldirt" type="AudioStreamPlayer3D" parent="player_sounds"]
+stream = ExtResource("9_aqqjk")
+volume_db = -3.0
+
+[node name="ShootMuskCool" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="player_sounds1" type="Node3D" parent="."]
+
+[node name="GroundChecker" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.4668, 1.04453)
+script = ExtResource("10_xm81s")
+
+[node name="AnimCrouchCooldown" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="Shaders" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Shaders"]
+material = SubResource("ShaderMaterial_686c3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_right = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.959539, 1.14036)
+mouse_filter = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("2_2xdnq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mnfkl")
+theme_override_font_sizes/font_size = 30
+text = "Ammo:"
+
+[node name="CurrentAmmo" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mnfkl")
+theme_override_font_sizes/font_size = 30
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mnfkl")
+theme_override_font_sizes/font_size = 20
+text = "Current Weapon:"
+
+[node name="CurrentWeapon" type="Label" parent="UI/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[connection signal="Update_ammo" from="." to="UI" method="_on_player_3d_update_ammo"]
+[connection signal="Update_Ammo" from="Head/Main_Cam/SubViewportContainer/SubViewport/view_model_cam/Weapons_Manager" to="UI" method="_on_weapons_manager_update_ammo"]
+[connection signal="Weapon_Changed" from="Head/Main_Cam/SubViewportContainer/SubViewport/view_model_cam/Weapons_Manager" to="UI" method="_on_weapons_manager_weapon_changed"]
+[connection signal="timeout" from="ShootMuskCool" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="AnimCrouchCooldown" to="." method="_on_anim_crouch_cooldown_timeout"]
+
+[editable path="Head/Main_Cam/SubViewportContainer/SubViewport/view_model_cam"]

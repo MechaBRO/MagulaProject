@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://dppjvdk202fa4"]
+
+[ext_resource type="Script" path="res://weapon_resources/weapon_resource.gd" id="1_y6qkn"]
+
+[resource]
+script = ExtResource("1_y6qkn")
+Weapon_Name = "Pistola_Gilliard"
+Activate_Anim = "pistol_ard/Activate"
+Shoot_Anim = "pistol_ard/Shooting"
+Reload_Anim = "pistol_ard/Reload"
+Deactivate_Anim = "pistol_ard/Deactivate"
+Out_Of_Ammo_Anim = "pistol_ard/No_Ammo"
+Current_Ammo = 12
+Reserve_Ammo = 24
+Magazine = 24
+Max_Ammo = 16
+Auto_Fire = false

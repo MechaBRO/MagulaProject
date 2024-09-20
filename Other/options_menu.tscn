@@ -1,0 +1,137 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqnptlv2mig46"]
+
+[ext_resource type="Script" path="res://Other/options_menu.gd" id="1_yfeph"]
+[ext_resource type="Texture2D" uid="uid://djut1idxkgu8h" path="res://UI/Man Grounds.png" id="2_uk3ja"]
+[ext_resource type="FontFile" uid="uid://b7coh7gpk5acq" path="res://UI/karakteristika.ttf" id="4_pdcfu"]
+[ext_resource type="AudioStream" uid="uid://y5m04nr5ivgh" path="res://Sound/whooshmenu.mp3" id="5_chmnl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tdwoh"]
+load_path = "res://.godot/imported/UI Texture_1.png-276ee07a2049a98bdbcf0dd70d59fceb.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ij8t3"]
+texture = SubResource("CompressedTexture2D_tdwoh")
+region_rect = Rect2(48.125, 970.25, 1481.63, 1852.88)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x7mvv"]
+texture = SubResource("CompressedTexture2D_tdwoh")
+region_rect = Rect2(19.243, 434.651, 1441.13, 482.625)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00686, 1.00686)
+size_flags_horizontal = 4
+script = ExtResource("1_yfeph")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.114569, 0.0976325)
+texture = ExtResource("2_uk3ja")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.519
+anchor_bottom = 0.102
+offset_left = 130.107
+offset_top = 0.993187
+offset_right = 134.219
+offset_bottom = 172.897
+scale = Vector2(0.936773, 1.05038)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 179.767
+offset_top = -7.94549
+offset_right = 219.767
+offset_bottom = 15.0545
+scale = Vector2(5.29615, 10.658)
+theme_override_styles/normal = SubResource("StyleBoxTexture_ij8t3")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 176.787
+offset_top = 227.44
+offset_right = 216.787
+offset_bottom = 250.44
+scale = Vector2(5.5302, 4.17713)
+theme_override_styles/normal = SubResource("StyleBoxTexture_x7mvv")
+
+[node name="Mouse Sensibility" type="Button" parent="."]
+layout_mode = 2
+offset_left = 154.937
+offset_top = 8.93868
+offset_right = 756.937
+offset_bottom = 52.9387
+scale = Vector2(0.424791, 0.424791)
+theme_override_fonts/font = ExtResource("4_pdcfu")
+theme_override_font_sizes/font_size = 30
+text = "Mouse Sensibility 0--------/----------100"
+flat = true
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 2
+offset_left = 115.21
+offset_top = 260.215
+offset_right = 717.21
+offset_bottom = 315.215
+scale = Vector2(0.568248, 0.568248)
+theme_override_fonts/font = ExtResource("4_pdcfu")
+theme_override_font_sizes/font_size = 40
+text = "Back to Main Title
+"
+flat = true
+
+[node name="Keybinds" type="Button" parent="."]
+layout_mode = 2
+offset_left = 115.21
+offset_top = 145.005
+offset_right = 717.21
+offset_bottom = 189.005
+scale = Vector2(0.571632, 0.571632)
+theme_override_fonts/font = ExtResource("4_pdcfu")
+theme_override_font_sizes/font_size = 30
+text = "Keybinds
+"
+flat = true
+
+[node name="Volume" type="Button" parent="."]
+layout_mode = 2
+offset_left = 154.937
+offset_top = 104.285
+offset_right = 756.937
+offset_bottom = 148.285
+scale = Vector2(0.426113, 0.426113)
+theme_override_fonts/font = ExtResource("4_pdcfu")
+theme_override_font_sizes/font_size = 30
+text = "Main Volume 0------------------/----100
+"
+flat = true
+
+[node name="Brightness" type="Button" parent="."]
+layout_mode = 2
+offset_left = 169.835
+offset_top = 60.5844
+offset_right = 771.835
+offset_bottom = 104.584
+scale = Vector2(0.382666, 0.382666)
+theme_override_fonts/font = ExtResource("4_pdcfu")
+theme_override_font_sizes/font_size = 30
+text = "Brightness 0----------/-----------100"
+flat = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="audio" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("5_chmnl")
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
