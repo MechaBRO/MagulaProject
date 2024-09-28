@@ -13,11 +13,11 @@ config_version=5
 config/name="MagulaProject"
 run/main_scene="res://Other/menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Scenes and GDs/icon.svg"
 
 [autoload]
 
-Audio="*res://audio.tscn"
+Audio="*res://Scenes and GDs/audio.tscn"
 
 [display]
 
@@ -32,6 +32,10 @@ window/stretch/mode="viewport"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/zylann.hterrain/plugin.cfg")
+
+[global_group]
+
+Target=""
 
 [input]
 

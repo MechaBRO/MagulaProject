@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://n4q750qshmef"]
+[gd_scene load_steps=25 format=4 uid="uid://n4q750qshmef"]
 
 [ext_resource type="Script" path="res://Other/view_model.gd" id="1_jlbhb"]
 [ext_resource type="Script" path="res://Other/weapons_manager.gd" id="2_w5tmp"]
@@ -8,8 +8,8 @@
 [ext_resource type="Resource" uid="uid://bnoyrne2kigft" path="res://weapon_resources/mosquete_javelin.tres" id="4_i716r"]
 [ext_resource type="Resource" uid="uid://dppjvdk202fa4" path="res://weapon_resources/pistol_gilliard.tres" id="5_itccm"]
 [ext_resource type="Texture2D" uid="uid://dgpdcbtqvjjg" path="res://Models/Pistola_Gilliard_Gilliard.jpg" id="6_3edu4"]
-[ext_resource type="AnimationLibrary" uid="uid://duubn4qo5ghhp" path="res://pistol_ard.res" id="7_qa2gy"]
-[ext_resource type="AnimationLibrary" uid="uid://bs47wuxnu6ui2" path="res://musk.res" id="9_e1e3k"]
+[ext_resource type="AnimationLibrary" uid="uid://duubn4qo5ghhp" path="res://Scenes and GDs/pistol_ard.res" id="7_qa2gy"]
+[ext_resource type="AnimationLibrary" uid="uid://bs47wuxnu6ui2" path="res://Scenes and GDs/musk.res" id="9_e1e3k"]
 
 [sub_resource type="Environment" id="Environment_oh2jl"]
 
@@ -95,7 +95,25 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fu3hw")
 
+[sub_resource type="Animation" id="Animation_f6iq7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Bullet_Point:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(25.7012, 61.7854, -308.09)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pion2"]
+_data = {
+"RESET": SubResource("Animation_f6iq7")
+}
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jqlv1"]
 size = Vector2(5, 5)
@@ -157,7 +175,7 @@ Start_Weapons = Array[String](["Mosquete_Javelino", "Pistola_Gilliard"])
 [node name="Weapons" type="Node3D" parent="Weapons_Manager"]
 
 [node name="Pistola_Gilliard" type="Node3D" parent="Weapons_Manager/Weapons"]
-transform = Transform3D(-0.137819, 0.480631, 0, -0.34281, -0.0982996, 0.350455, 0.336878, 0.0965988, 0.356625, 28.009, 63.17, -308.366)
+transform = Transform3D(-0.137819, 0.480631, -1.23531e-07, -0.34281, -0.0982996, 0.350454, 0.336878, 0.0965988, 0.356625, 28.009, 62.62, -308.366)
 visible = false
 
 [node name="Plano" type="MeshInstance3D" parent="Weapons_Manager/Weapons/Pistola_Gilliard"]
@@ -165,8 +183,7 @@ mesh = SubResource("ArrayMesh_vcjou")
 skeleton = NodePath("")
 
 [node name="Mosquete_Javelino" type="Node3D" parent="Weapons_Manager/Weapons"]
-transform = Transform3D(-0.985671, -0.00253342, 0.168656, 0.0183695, 0.992328, 0.122263, -0.167672, 0.123609, -0.978063, 27.096, 61.148, -313.082)
-visible = false
+transform = Transform3D(-0.950264, 0.261641, 0.168941, 0.283559, 0.95118, 0.121869, -0.128807, 0.163713, -0.978063, 27.096, 62.978, -313.082)
 
 [node name="Cube_001" type="MeshInstance3D" parent="Weapons_Manager/Weapons/Mosquete_Javelino"]
 transform = Transform3D(0.509085, 7.45058e-09, 7.45058e-09, 2.79397e-09, 0.509084, 0, 0, -7.45058e-09, 0.509084, 0, 0, 0)
@@ -182,6 +199,10 @@ libraries = {
 "pistol_ard": ExtResource("7_qa2gy")
 }
 
+[node name="Bullet_Point" type="Marker3D" parent="Weapons_Manager/Weapons"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7012, 61.7854, -308.09)
+
 [node name="GunSmoke" type="MeshInstance3D" parent="Weapons_Manager"]
 transform = Transform3D(0.194602, 0.0251787, -0.980561, 0.00253757, 0.999656, 0.0261727, 0.980881, -0.00758174, 0.194471, 26.4804, 66.0544, -314.926)
 visible = false
@@ -192,6 +213,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_xx481")
 
 [node name="FireRayCast" type="RayCast3D" parent="Weapons_Manager"]
 transform = Transform3D(0.99967, 0.0132338, 0.0221821, -0.0137981, 0.999581, 0.0254484, -0.0218349, -0.0257467, 0.999431, 27.0517, 64.8436, -316.778)
+visible = false
 target_position = Vector3(0, 0, -1)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Weapons_Manager"]

@@ -139,15 +139,15 @@ func _play_footstep_audio():
 
 #shoot
 func _input(event):
-	if(event.is_action_pressed("FIRE") and is_ready):
-		is_ready = false
-		$ShootMuskCool.start()
-		gunshot.play()
-		instance = bullets.instantiate()
-		instance.position = gun_barrel.global_position
-		instance.transform.basis = gun_barrel.global_transform.basis
-		get_parent().add_child(instance)
-		$Head/Main_Cam/trauma_causer.cause_trauma()
+	#if(event.is_action_pressed("FIRE") and is_ready):
+		#is_ready = false
+		#$ShootMuskCool.start()
+		#gunshot.play()
+		#instance = bullets.instantiate()
+		#instance.position = gun_barrel.global_position
+		#instance.transform.basis = gun_barrel.global_transform.basis
+		#get_parent().add_child(instance)
+		#$Head/Main_Cam/trauma_causer.cause_trauma()
 	if(event.is_action_pressed("RELOAD")):
 		reload()
 #func movement_sounds():

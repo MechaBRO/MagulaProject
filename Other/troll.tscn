@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://be7p33naboma3" path="res://Texture/Troll_boneREAL1_5.png" id="7_lskxd"]
 [ext_resource type="Texture2D" uid="uid://cotlknmbu3gy4" path="res://Texture/Troll_woodREAL1.png" id="8_3jpwt"]
 [ext_resource type="Texture2D" uid="uid://ck6st025ynw58" path="res://Texture/Troll_metalREAL2.png" id="9_g6vx7"]
-[ext_resource type="Script" path="res://Area3D.gd" id="10_mkx3j"]
+[ext_resource type="Script" path="res://Scenes and GDs/Area3D.gd" id="10_mkx3j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3k57b"]
 resource_name = "Material"

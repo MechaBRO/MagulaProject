@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://d2wosehl4ahig"]
 
-[ext_resource type="PackedScene" uid="uid://b5i78yf2d5rps" path="res://Models/Pistola_Gilliard.glb" id="1_ak4cg"]
+[ext_resource type="PackedScene" uid="uid://b5i78yf2d5rps" path="res://Models/Pistola_Gilliard.glb" id="1_pj0d3"]
 
-[node name="Pistola_Gilliard" instance=ExtResource("1_ak4cg")]
+[node name="Pistola_Gilliard" instance=ExtResource("1_pj0d3")]
 
 [node name="Plano" parent="." index="0"]
 transform = Transform3D(0.0594353, -1.92577e-08, 0.496455, -0.496455, -2.17007e-08, 0.0594353, 1.92577e-08, -0.5, -2.17007e-08, 3.75235, 2.59354, 0)

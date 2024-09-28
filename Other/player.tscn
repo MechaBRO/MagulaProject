@@ -1,12 +1,13 @@
-[gd_scene load_steps=31 format=3 uid="uid://dcdpunclxfyqu"]
+[gd_scene load_steps=29 format=3 uid="uid://dcdpunclxfyqu"]
 
 [ext_resource type="Script" path="res://Models/O_Mensageiro_1.gd" id="1_5l758"]
 [ext_resource type="Script" path="res://Other/HUD.gd" id="2_2xdnq"]
 [ext_resource type="PackedScene" uid="uid://n4q750qshmef" path="res://Other/view_model.tscn" id="2_5agj8"]
-[ext_resource type="PackedScene" uid="uid://4w4icpflseuc" path="res://area_3d.tscn" id="2_skggh"]
+[ext_resource type="PackedScene" uid="uid://4w4icpflseuc" path="res://Scenes and GDs/area_3d.tscn" id="2_skggh"]
 [ext_resource type="Shader" path="res://Other/player.gdshader" id="3_4bies"]
 [ext_resource type="FontFile" uid="uid://b7coh7gpk5acq" path="res://UI/karakteristika.ttf" id="3_mnfkl"]
 [ext_resource type="PackedScene" uid="uid://bpcg5q23uqy75" path="res://Models/O_Mensageiro_game.glb" id="3_ojoam"]
+[ext_resource type="Texture2D" uid="uid://b3vih71gwte7l" path="res://UI/KovaaK-Crosshair.png" id="4_rwgf5"]
 [ext_resource type="AudioStream" uid="uid://vx4opaemj4qy" path="res://Sound/musket1.mp3" id="4_ti7tb"]
 [ext_resource type="PackedScene" uid="uid://bki3rlwax2ash" path="res://Other/trauma_causer.tscn" id="5_rt0cm"]
 [ext_resource type="AudioStream" uid="uid://duto3h6kbh1tc" path="res://Sound/footsteps_run.mp3" id="6_sixad"]
@@ -159,19 +160,6 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x7s8k"]
 
-[sub_resource type="Animation" id="Animation_mox6k"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_xp64f"]
-resource_name = "ShootingJavelin"
-length = 0.6
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ry1q1"]
-_data = {
-"RESET": SubResource("Animation_mox6k"),
-"ShootingJavelin": SubResource("Animation_xp64f")
-}
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_686c3"]
 shader = ExtResource("3_4bies")
 shader_parameter/x = 100.0
@@ -180,6 +168,48 @@ shader_parameter/y = 100.0
 [node name="Player3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5668, 62.0929, -302.555)
 script = ExtResource("1_5l758")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("2_2xdnq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mnfkl")
+theme_override_font_sizes/font_size = 30
+text = "Ammo:"
+
+[node name="CurrentAmmo" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mnfkl")
+theme_override_font_sizes/font_size = 30
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_mnfkl")
+theme_override_font_sizes/font_size = 15
+text = "Current Weapon:"
+
+[node name="CurrentWeapon" type="Label" parent="UI/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+
+[node name="MainSight" type="TextureRect" parent="UI"]
+offset_left = 290.0
+offset_top = 149.0
+offset_right = 316.0
+offset_bottom = 175.0
+texture = ExtResource("4_rwgf5")
+stretch_mode = 3
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0358715, 3.59733, 0.880371)
@@ -212,6 +242,12 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6784, 66.0428, -305.392)
 environment = SubResource("Environment_tjexl")
 
+[node name="Pistola_Gilliard" parent="Head/Main_Cam/SubViewportContainer/SubViewport/view_model_cam/Weapons_Manager/Weapons" index="0"]
+transform = Transform3D(-0.137819, 0.480631, -1.25637e-07, -0.34281, -0.0982996, 0.350454, 0.336878, 0.0965988, 0.356625, 28.009, 63.17, -308.366)
+
+[node name="Mosquete_Javelino" parent="Head/Main_Cam/SubViewportContainer/SubViewport/view_model_cam/Weapons_Manager/Weapons" index="1"]
+transform = Transform3D(-0.842229, 0.511965, 0.168941, 0.533294, 0.837105, 0.121869, -0.0790283, 0.192737, -0.978063, 27.096, 57.888, -313.082)
+
 [node name="trauma_causer" parent="Head/Main_Cam" instance=ExtResource("5_rt0cm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0999146)
 trauma_amount = 1.0
@@ -241,12 +277,6 @@ shape = SubResource("BoxShape3D_1ioeq")
 transform = Transform3D(3, 0, 0, 0, 6, 0, 0, 0, 2.7, -0.0499992, -3.3574, 0.661987)
 shape = SubResource("BoxShape3D_x7s8k")
 disabled = true
-
-[node name="Player_Animations" type="AnimationPlayer" parent="."]
-root_node = NodePath("")
-libraries = {
-"": SubResource("AnimationLibrary_ry1q1")
-}
 
 [node name="player_sounds" type="Node3D" parent="."]
 
@@ -302,39 +332,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.959539, 1.14036)
 mouse_filter = 2
-
-[node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource("2_2xdnq")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_mnfkl")
-theme_override_font_sizes/font_size = 30
-text = "Ammo:"
-
-[node name="CurrentAmmo" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_mnfkl")
-theme_override_font_sizes/font_size = 30
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_mnfkl")
-theme_override_font_sizes/font_size = 20
-text = "Current Weapon:"
-
-[node name="CurrentWeapon" type="Label" parent="UI/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
 
 [connection signal="Update_ammo" from="." to="UI" method="_on_player_3d_update_ammo"]
 [connection signal="Update_Ammo" from="Head/Main_Cam/SubViewportContainer/SubViewport/view_model_cam/Weapons_Manager" to="UI" method="_on_weapons_manager_update_ammo"]
